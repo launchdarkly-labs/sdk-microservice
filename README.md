@@ -6,6 +6,8 @@ The LaunchDarkly SDK Microservice exposes functionality of the [Go server-side S
 
 The SDK Microservice is architecturally different from the [LaunchDarkly Relay Proxy](https://github.com/launchdarkly/ld-relay). Whereas the Relay Proxy is connected to by SDKs, SDK Microservice exposes an SDK.
 
+This project is not officially supported by LaunchDarkly.
+
 ## Building
 
 The SDK Microservice can be built with: `go build .` which will produce the executable `sdk-microservice`.
