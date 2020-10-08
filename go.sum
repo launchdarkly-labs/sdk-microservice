@@ -1,0 +1,14 @@
+github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdnnjpJbkM4JQ=
+github.com/blang/semver v3.5.1+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
+github.com/google/uuid v1.1.1 h1:Gkbcsh/GbpXz7lPftLA3P6TYMwjCLYm83jiFQZF/3gY=
+github.com/google/uuid v1.1.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/gorilla/mux v1.7.4 h1:VuZ8uybHlWmqV03+zRzdwKL4tUnIp1MAQtp1mIFE1bc=
+github.com/gorilla/mux v1.7.4/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 h1:+ngKgrYPPJrOjhax5N+uePQ0Fh1Z7PheYoUI/0nzkPA=
+github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79/go.mod h1:FecbI9+v66THATjSRHfNgh1IVFe/9kFxbXtjV0ctIMA=
+github.com/launchdarkly/eventsource v1.4.1 h1:CbV7RzAfyPjPdmaOiRWi7uKtsBZLqOLwuk3cEt7iMOU=
+github.com/launchdarkly/eventsource v1.4.1/go.mod h1:y6+/PY1Az/AQyjCMsFt5mOZq1tfM0/KOQRS4f0pVe3M=
+gopkg.in/launchdarkly/go-sdk-common.v1 v1.0.0-20200204015611-d48d1b4f4e70 h1:P1LaXpioVaqT2ltbaIsNBcigVLzj/7NEiOKzersfuEQ=
+gopkg.in/launchdarkly/go-sdk-common.v1 v1.0.0-20200204015611-d48d1b4f4e70/go.mod h1:2kE5FCTDQ53bqRSOfJpE5fdiAQYiN9LESONDNyEBFjI=
+gopkg.in/launchdarkly/go-server-sdk.v4 v4.0.0-20200314025339-3984042d9ae9 h1:LFC5mIoVzW+1s7dJv2vNvCyLOMRNr4htIu6muz9bm+8=
+gopkg.in/launchdarkly/go-server-sdk.v4 v4.0.0-20200314025339-3984042d9ae9/go.mod h1:5PjGYhLa/sjT7W4x56rD0ZyqhmMQPP9b4Y57WzFAqT4=
