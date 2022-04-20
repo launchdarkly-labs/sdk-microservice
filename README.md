@@ -1,24 +1,34 @@
-# LaunchDarkly SDK Microservice
+> This project is not officially supported by LaunchDarkly.
 
-[![CircleCI](https://circleci.com/gh/launchdarkly/sdk-agent.svg?style=svg)](https://circleci.com/gh/launchdarkly/sdk-agent)
+# LaunchDarkly SDK microservice
 
-The LaunchDarkly SDK Microservice exposes functionality of the [Go server-side SDK](https://github.com/launchdarkly/go-server-sdk) over HTTP. The SDK Microservice is intended to be run on a local network, and allows LaunchDarkly to be utilized in otherwise unsupported languages, and environments. If a native SDK exists for your platform / language, the native SDK should be used instead of SDK Microservice.
+The LaunchDarkly SDK microservice is a wrapper application around the Go SDK, and exposes functionality of the [Go server-side SDK](https://github.com/launchdarkly/go-server-sdk) over HTTP.
 
-The SDK Microservice is architecturally different from the [LaunchDarkly Relay Proxy](https://github.com/launchdarkly/ld-relay). Whereas the Relay Proxy is connected to by SDKs, SDK Microservice exposes an SDK.
+The SDK microservice allows LaunchDarkly to be used in otherwise unsupported languages. However, if a native SDK exists for your platform or language, the native SDK should be used instead of the SDK microservice. To learn more, read [Using LaunchDarkly without a supported SDK](/guides/tutorials/unsupported-sdk).
 
-This project is not officially supported by LaunchDarkly.
+For performance reasons, you should run the SDK microsevice on a local network. When you use the SDK microservice, flag evaluation happens over the network, in the POST request, so there is some latency cost when compared with using a supported SDK. Running over a local network minimizes this latency cost.
+
+The SDK microservice is architecturally different from the [LaunchDarkly Relay Proxy](https://github.com/launchdarkly/ld-relay). Whereas the Relay Proxy is connected to by SDKs, the SDK microservice exposes an SDK.
 
 ## Building
 
-The SDK Microservice can be built with: `go build .` which will produce the executable `sdk-microservice`.
+To build the SDK microservice, use:
+
+```
+go build .
+```
+
+This produces the executable `sdk-microservice`.
 
 ## Specifying a configuration
 
-The SDK Microservice is managed with environment variables. You must set `SDK_KEY` to your LaunchDarkly projects SDK key, and may optionally set `PORT` which defaults to `8080`.
+You can manage the SDK microservice with environment variables. You must set the environment variable `SDK_KEY` to your LaunchDarkly project's SDK key. You may optionally set the `PORT`, which defaults to `8080`.
 
 ## API
 
-## GET /
+### GET /
+
+Check whether the SDK microservice is initialized.
 
 Returns HTTP 200 with a body of the form:
 
@@ -28,9 +38,11 @@ Returns HTTP 200 with a body of the form:
 }
 ```
 
-## POST /track
+### POST /track
 
-Submit an event to be tracked. POST body must be of the form:
+Submit an event for LaunchDarkly to track. To learn more, read [Sending custom events](https://docs.launchdarkly.com/sdk/features/events#go).
+
+Your `POST` body must be of the form:
 
 ```
 {
@@ -43,13 +55,17 @@ Submit an event to be tracked. POST body must be of the form:
 
 Returns HTTP 204.
 
-## POST /flush
+### POST /flush
 
-Flush events currently in the queue. Returns HTTP 204.
+Flush events currently in the queue. This sends all pending analytics events to LaunchDarkly. To learn more, read [Flushing events](https://docs.launchdarkly.com/sdk/features/flush#go).
 
-## POST /identify
+Returns HTTP 204.
 
-Submit a user to be recorded by LaunchDarkly. POST body must be of the form:
+### POST /identify
+
+Submit a user for LaunchDarkly to record. To learn more, read [Identifying and changing users](https://docs.launchdarkly.com/sdk/features/identify#go).
+
+Your `POST` body must be of the form:
 
 ```
 {
@@ -57,9 +73,11 @@ Submit a user to be recorded by LaunchDarkly. POST body must be of the form:
 }
 ```
 
-## POST /allFlags
+### POST /allFlags
 
-Return a map of all flags evaluated for a specific user. POST body must be of the form:
+Return a map of all flags evaluated for a specific user. To learn more, read [Getting all flags](https://docs.launchdarkly.com/sdk/features/all-flags#go).
+
+Your `POST` body must be of the form:
 
 ```
 {
@@ -76,15 +94,17 @@ Returns HTTP 200 of the form:
 }
 ```
 
-## POST /feature/{key}/eval
+### POST /feature/{key}/eval
 
-Evaluate a flag for a given user: Post body must be of the form:
+Evaluate a flag for a given user. To learn more, read [Evaluating flags](https://docs.launchdarkly.com/sdk/features/evaluating#go).
+
+Your `POST` body must be of the form:
 
 ```
 {
     "user": User,
     "defaultValue": Any,
-    'detail': Optional Boolean
+    "detail": Optional Boolean
 }
 ```
 
@@ -99,9 +119,9 @@ Returns HTTP 200 of the form:
 }
 ```
 
-The fields `reason`, and `variationIndex` will only be included if you specify `detail == true` in the request.
+The fields `reason` and `variationIndex` are only included if you specify `"detail": true` in the request.
 
-## Type User
+### Type User
 
 A `User` has the form:
 
@@ -120,7 +140,9 @@ A `User` has the form:
 }
 ```
 
-## Type Reason
+To learn more, read [User configuration](https://docs.launchdarkly.com/sdk/features/user-config#go).
+
+### Type Reason
 
 A `Reason` has the form:
 
@@ -129,6 +151,8 @@ A `Reason` has the form:
     "kind": String
 }
 ```
+
+To learn more, read [Evaluation reasons](https://docs.launchdarkly.com/sdk/features/evaluation-reasons#go).
 
 ## LaunchDarkly overview
 
